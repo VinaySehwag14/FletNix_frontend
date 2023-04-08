@@ -1,0 +1,104 @@
+<div class="main_container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center text-white bg-dark">
+            <h4>Login</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Enter email"
+                />
+                <div
+                  *ngIf="
+                    loginForm.get('email')?.invalid &&
+                    (loginForm.get('email')?.dirty ||
+                      loginForm.get('email')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="loginForm.get('email')?.errors?.['required']">
+                    Email is required
+                  </div>
+                  <div *ngIf="loginForm.get('email')?.errors?.['email']">
+                    Invalid email format
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    loginForm.get('password')?.invalid &&
+                    (loginForm.get('password')?.dirty ||
+                      loginForm.get('password')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="loginForm.get('password')?.errors?.['required']">
+                    Password is required
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  placeholder="Enter age"
+                  formControlName="age"
+                />
+                <div
+                  *ngIf="
+                    loginForm.get('age')?.invalid &&
+                    (loginForm.get('age')?.dirty ||
+                      loginForm.get('age')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div *ngIf="loginForm.get('age')?.errors?.['required']">
+                    Age is required
+                  </div>
+                  <div *ngIf="loginForm.get('age')?.errors?.['min']">
+                    Minimum age is 18
+                  </div>
+                  <div *ngIf="loginForm.get('age')?.errors?.['max']">
+                    Maximum age is 120
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-info btn-block"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+              <div class="text-center mt-3">
+                <a routerLink="/register"
+                  >Don't have an account? Register here.</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

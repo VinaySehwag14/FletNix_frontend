@@ -1,0 +1,13 @@
+<div class="form-group">
+  <label for="type-select">Type:</label>
+  <select
+    id="type-select"
+    class="form-control"
+    [(ngModel)]="selectedType"
+    (change)="onFilterChanged()"
+  >
+    <option value="">All</option>
+    <option value="TV Show">TV Shows</option>
+    <option value="Movie">Movies</option>
+  </select>
+</div>

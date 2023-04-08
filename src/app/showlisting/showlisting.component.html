@@ -1,0 +1,68 @@
+<div class="container">
+  <app-filter (filterChanged)="onFilterChanged($event)"></app-filter>
+  <div class="row">
+    <div class="col">
+      <h1>TV Shows/Movies</h1>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <form class="form-inline justify-content-center">
+        <div class="form-group mb-2 mr-3">
+          <input
+            class="form-control form-control-sm ml-2"
+            type="text"
+            placeholder="Search by title or cast ..."
+            aria-label="Search"
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
+            (input)="onSearchInput($event)"
+          />
+        </div>
+        <button
+          class="btn btn-outline-success btn-sm mb-2"
+          type="submit"
+          (click)="onSearch()"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Cast</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tvShowMovie of filteredTvShowsMovies">
+            <td>
+              <a routerLink="/tv-show-movie/{{ tvShowMovie.id }}">{{
+                tvShowMovie.title
+              }}</a>
+            </td>
+            <td>{{ tvShowMovie.cast }}</td>
+            <td>{{ tvShowMovie.rating }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalCount"
+          [pageSize]="perPage"
+          [(page)]="currentPage"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="5"
+          [rotate]="true"
+          [ellipses]="false"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+t

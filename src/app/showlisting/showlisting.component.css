@@ -1,0 +1,9 @@
+.select-wrapper {
+    width: 200px;
+  }
+  
+  .select-dropdown {
+    min-width: 200px;
+    max-width: 300px;
+  }
+  
